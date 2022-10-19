@@ -50,16 +50,18 @@ start.addEventListener("click",function(){
     let timer = setInterval(game,12000)
         
     function game (){
-        for (let i = 0; i < 5; i++) {
-            let GenerateNumber = Math.floor(Math.random() * 100)
-            casualNumber.push(GenerateNumber)
-        }
-        
+
         let repeteNumber = prompt("Inserisci i numeri che ti ricordi")
         console.log(repeteNumber);
         
         //il software dice quanti e quali dei numeri da indovinare sono stati individuati.
         
+        if (repeteNumber.includes(casualNumber)) {
+            console.log("hai indovinato tutti i numeri");
+        }else{
+            console.log("non li hai indovinati");
+        }
+
         clearInterval(timer)
     }
 })
