@@ -35,44 +35,34 @@ let counterTimer
 //timer 30s
 start.addEventListener("click",function(){
     console.log("start");
-    let seconds = 30
+    number.classList.remove("d-none")
+    let seconds = 10
     counterTimer = setInterval(function(){
         time.innerText = seconds
         seconds--
         if (seconds < 0) {
+            number.classList.add("d-none")
+            time.classList.add("d-none")
             clearInterval(counterTimer)
         }
     },1000)
     
-        let timer = setInterval(game,32000)
-
-        function game (){
-            for (let i = 0; i < 5; i++) {
-                let GenerateNumber = Math.floor(Math.random() * 100)
-                casualNumber.push(GenerateNumber)
-            }
-                number.classList.add("d-none")
-            
-                let repeteNumber = prompt("Inserisci i numeri che ti ricordi")
-                console.log(repeteNumber);
-            
-                //il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-            
-            
-                if (repeteNumber === casualNumber) {
-                    console.log("Hai indovinato tutti i numeri" + casualNumber);
-                }
-                
-                else if(repeteNumber !== casualNumber){
-                    //console.log("non hai indovianato tutti i numeri" );
-                    //salvo in un array i numeri scritti dall utente
-                    //numeriIndovinati.push(repeteNumber)
-                    //console.log(numeriIndovinati);
-                    //devo comparare la lista di quelli scritti con quella generata
-                }
-                clearInterval(timer)
-            }
-    })
+    let timer = setInterval(game,12000)
+        
+    function game (){
+        for (let i = 0; i < 5; i++) {
+            let GenerateNumber = Math.floor(Math.random() * 100)
+            casualNumber.push(GenerateNumber)
+        }
+        
+        let repeteNumber = prompt("Inserisci i numeri che ti ricordi")
+        console.log(repeteNumber);
+        
+        //il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+        
+        clearInterval(timer)
+    }
+})
 
 
 
