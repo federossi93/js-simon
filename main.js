@@ -33,38 +33,65 @@ number.append(casualNumber)
 let counterTimer
 
 //timer 30s
-start.addEventListener("click",function(){
+start.addEventListener("click", function () {
     console.log("start");
+    //faccio comparire i numeri e i timer
     number.classList.remove("d-none")
-    let seconds = 10
-    counterTimer = setInterval(function(){
+    time.classList.remove("d-none")
+    //genera timer e fa comparire i numeri
+    let seconds = 2
+    counterTimer = setInterval(function () {
         time.innerText = seconds
         seconds--
+    //nasconte in testo  
         if (seconds < 0) {
             number.classList.add("d-none")
             time.classList.add("d-none")
+    //ritarda il prompt di 1sec
+            let slowPrompt = setInterval(function () {
+                generateMarkUp(0, 5)
+                clearInterval(slowPrompt)
+            }, 1000)
             clearInterval(counterTimer)
         }
-    },1000)
-    
-    let timer = setInterval(game,12000)
-        
-    function game (){
+    }, 1000)
 
-        let repeteNumber = prompt("Inserisci i numeri che ti ricordi")
-        console.log(repeteNumber);
-        
-        //il software dice quanti e quali dei numeri da indovinare sono stati individuati.
-        
-        if (repeteNumber.includes(casualNumber)) {
-            console.log("hai indovinato tutti i numeri");
-        }else{
-            console.log("non li hai indovinati");
-        }
-
-        clearInterval(timer)
-    }
 })
+
+//Dopo che sono stati inseriti i 5 numeri,
+//il software dice quanti e quali dei numeri da indovinare sono stati individuati.
+let numberText = []
+
+let conteggio = 0
+
+let counter = document.querySelector(".counter")
+
+let ul = document.querySelector("ul")
+
+function generateMarkUp(min, max) {
+    for (let i = min; i < max; i++) {
+        const repeteNumber = Number(prompt("Scrivi i tuoi numeri"))
+        numberText.push(repeteNumber)
+        //console.log(numberText);
+    }
+    for (let i = min; i < casualNumber.length; i++) {
+        const element = casualNumber[i];
+        const secondElement = numberText[i];
+        //console.log(element, "numero generato casuale");
+        //console.log(secondElement, "numeri prompt");
+        if (casualNumber.includes(numberText[i])) {
+            conteggio++
+            //console.log(numberText[i]);
+            //console.log(conteggio,"io sono il conteggio");
+            counter.innerHTML = conteggio //punti utente
+            const li = document.createElement("li")
+            ul.append(li)
+            li.append(numberText[i])
+        }
+    }
+}
+
+
 
 
 
